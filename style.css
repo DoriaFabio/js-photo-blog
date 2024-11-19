@@ -69,7 +69,6 @@ main {
     aspect-ratio: 1;
     border: 1px solid black;
     margin: 12px 12px;
-    background-color: brown;
 }
 
 .text {
@@ -83,4 +82,9 @@ main {
     top: -9px;
     left: 100px;
     width: 23px;
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
 }
