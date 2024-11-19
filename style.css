@@ -26,6 +26,18 @@ h1 {
     align-items: center;
 }
 
+.wrap {
+    flex-wrap: wrap;
+}
+
+.g-row {
+    gap: 20px;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
 header {
     background-image: url(./img/wall.png);
     background-repeat: no-repeat;
@@ -37,4 +49,32 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     height: calc(100vh - 100px);
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px 0px;
+}
+
+.col {
+    width: calc((100% - 40px)/3);
+    position: relative;
+    background-color: white;
+    border: 1px solid black;
+    height: 270px;
+}
+
+.img {
+    aspect-ratio: 1;
+    border: 1px solid black;
+    margin: 12px 12px;
+    background-color: brown;
+}
+
+.text {
+    height: 25%;
+    margin: 0px 12px;
+    font-size: 13px;
+    margin-bottom: 5px;
 }
