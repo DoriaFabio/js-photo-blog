@@ -5,5 +5,19 @@
 }
 
 body {
-    font-family: "Edu TAS Beginner", cursive;
+    font-family: "Edu TAS Beginner", serif;
+
+}
+
+h1 {
+    padding: 15px 0px;
+    text-align: center;
+    font-size: 50px;
+    text-transform: uppercase;
+}
+
+header {
+    background-image: url(./img/wall.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
