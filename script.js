@@ -27,12 +27,11 @@ const button = document.querySelector("button");
 const overlay = document.getElementById("overlay");
 
 function getData() {
-    // const arrayName = [];
     axios.get(endpoint, { params }).then((res) => {    //! chiamata axios
         const photos = res.data;
         console.log(photos);
         const template = photos.map((photo) => {
-            const {id, title, url} = photo          //! Destrutturazione
+            const { id, title, url } = photo          //! Destrutturazione
             return `
             <div id="${id}"  class="col d-flex flex-column">
               <img id="pin" src="./img/pin.svg" alt="Pallino">
@@ -44,7 +43,7 @@ function getData() {
             </div>
           </div>
             `;
-        }) .join("");
+        }).join("");
         card.innerHTML = template;
         // getFigures();
     })
@@ -55,9 +54,11 @@ function getData() {
             console.log("in tutti i casi eseguita");
         });
 
-        //todo Soluzione con un ciclo for 
+    //todo Soluzione con un ciclo for 
 
     // for (let i = 0; i < 6; i++) {
+    //     const arrayName = [];
+    //     let templat = "";
     //     axios.get(baseUrl + resource, { params }).then((res) => {
     //         console.log(res.data);
     //         const image = res.data[i].url;
