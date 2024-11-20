@@ -16,11 +16,13 @@ console.clear();
 
 //! Api URL 
 const baseUrl = "https://jsonplaceholder.typicode.com";
-//! Endpoint
+// //! Endpoint
 const resource = "/photos";
 const endpoint = baseUrl + resource;
-//! Params
-const params = { _limit: 6 };
+// //! Params
+let randomStart = Math.floor(Math.random() * 5000);
+const params =  `?_start=${randomStart}&_limit=6`;
+
 //!  costanti
 const card = document.getElementById("card");
 const button = document.querySelector("a");
@@ -28,7 +30,7 @@ const overlay = document.getElementById("overlay");
 const imgOverlay = document.getElementById("imgOver");
 
 function getData() {
-    axios.get(endpoint, { params }).then((res) => {    //! chiamata axios
+    axios.get(endpoint + params).then((res) => {    //! chiamata axios
         const photos = res.data;
         console.log(photos);
         const template = photos.map((photo) => {
@@ -92,6 +94,8 @@ function getData() {
     //         });
     // };
 }
+
+//! Overlay foto 
 
 function getFigures(p) {
     const figures = document.querySelectorAll("figure");
