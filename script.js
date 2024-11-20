@@ -20,12 +20,14 @@ const baseUrl = "https://jsonplaceholder.typicode.com";
 const resource = "/photos";
 const endpoint = baseUrl + resource;
 // //! Params
-let randomStart = Math.floor(Math.random() * 5000);
-const params =  `?_start=${randomStart}&_limit=6`;
+let randomNumber = Math.floor(Math.random() * 5000);
+const params =  `?_start=${randomNumber}&_limit=6`;
 
 //!  costanti
 const card = document.getElementById("card");
-const button = document.querySelector("a");
+const button1 = document.getElementById("close");
+const button2 = document.getElementById("add");
+const button3 = document.getElementById("delete");
 const overlay = document.getElementById("overlay");
 const imgOverlay = document.getElementById("imgOver");
 
@@ -94,7 +96,6 @@ function getData() {
     //         });
     // };
 }
-
 //! Overlay foto 
 
 function getFigures(p) {
@@ -108,10 +109,17 @@ function getFigures(p) {
             imgOverlay.src = photo.url;
             imgOverlay.alt = photo.title;
         });
-        button.addEventListener("click", function() {
+        button1.addEventListener("click", function() {
+            overlay.classList.add("d-none");
+        });
+        button2.addEventListener("click", function() {
+            overlay.classList.add("d-none");
+            
+        });
+        button3.addEventListener("click", function() {
             overlay.classList.add("d-none");
         });
     });
 }
-getData();
 
+getData();
