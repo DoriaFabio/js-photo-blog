@@ -23,7 +23,7 @@ const endpoint = baseUrl + resource;
 const params = { _limit: 6 };
 //!  costanti
 const card = document.getElementById("card");
-const button = document.querySelector("button");
+const button = document.querySelector("a");
 const overlay = document.getElementById("overlay");
 const imgOverlay = document.getElementById("imgOver");
 

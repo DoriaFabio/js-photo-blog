@@ -79,6 +79,10 @@ main {
     cursor: pointer;
 }
 
+.col:hover #pin {
+    display: none;
+}
+
 .img {
     aspect-ratio: 1;
     border: 1px solid black;
@@ -110,8 +114,26 @@ main {
     bottom: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    z-index: 4;
 }
+
+#overlay img {
+    width: 500px;
+    height: 500px;
+    margin-top: 20px;
+    box-shadow: 10px 10px 6px 7px rgba(0,0,0,0.7);
+}
+
+#overlay a {
+    padding: 7px 20px;
+    background-color: #E5A35F;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 50px;
+    font-size: 25px;
+    box-shadow: 10px 10px 6px 0px rgba(0,0,0,0.7);
+}
+
 
 @media  screen and (max-width: 768px) {
     .col {
