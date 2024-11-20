@@ -76,6 +76,7 @@ main {
     rotate: 15deg;
     z-index: 3;
     box-shadow: 12px 12px 5px 0px rgba(0,0,0,0.7);
+    cursor: pointer;
 }
 
 .img {

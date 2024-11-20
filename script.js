@@ -25,6 +25,7 @@ const params = { _limit: 6 };
 const card = document.getElementById("card");
 const button = document.querySelector("button");
 const overlay = document.getElementById("overlay");
+const imgOverlay = document.getElementById("imgOver");
 
 function getData() {
     axios.get(endpoint, { params }).then((res) => {    //! chiamata axios
@@ -33,7 +34,7 @@ function getData() {
         const template = photos.map((photo) => {
             const { id, title, url } = photo          //! Destrutturazione
             return `
-            <div id="${id}"  class="col d-flex flex-column">
+            <figure id="${id}"  class="col d-flex flex-column">
               <img id="pin" src="./img/pin.svg" alt="Pallino">
               <div class="img">
                   <img src="${url}" alt="${title}">
@@ -41,11 +42,11 @@ function getData() {
               <div class="text">
                 <p>${title}</p>
             </div>
-          </div>
+          </figure>
             `;
         }).join("");
         card.innerHTML = template;
-        // getFigures();
+        getFigures(photos);
     })
         .catch((error) => {
             console.log(error);
@@ -92,8 +93,21 @@ function getData() {
     // };
 }
 
-// function getFigures() {
-//     const figures = document.getElementById("imagecard");
-//     console.log(figures);
-// }
+function getFigures(p) {
+    const figures = document.querySelectorAll("figure");
+    figures.forEach((figure) => {
+        figure.addEventListener("click", function() {
+            console.log(figure.id);
+            overlay.classList.remove("d-none");
+            const photo = p.find((el)=> el.id === parseInt(figure.id));
+            console.log(photo);
+            imgOverlay.src = photo.url;
+            imgOverlay.alt = photo.title;
+        });
+        button.addEventListener("click", function() {
+            overlay.classList.add("d-none");
+        });
+    });
+}
 getData();
+
