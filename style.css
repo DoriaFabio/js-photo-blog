@@ -154,6 +154,11 @@ main {
     .container {
         padding: 20px 43px;;
     }
+
+    #overlay img {
+        width: 300px;
+        height: 300px;
+    }
 }
 
 @media  screen and (max-width: 426px) {
@@ -172,5 +177,10 @@ main {
         background-repeat: no-repeat;
         background-size: cover;
         height: 100%;
+    }
+
+    #overlay img {
+        width: 200px;
+        height: 200px;
     }
 }
