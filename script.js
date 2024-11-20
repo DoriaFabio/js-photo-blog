@@ -14,45 +14,85 @@
 
 console.clear();
 
+//! Api URL 
 const baseUrl = "https://jsonplaceholder.typicode.com";
+//! Endpoint
 const resource = "/photos";
 const endpoint = baseUrl + resource;
-const params = { "_limit": 6 };
+//! Params
+const params = { _limit: 6 };
+//!  costanti
 const card = document.getElementById("card");
+const button = document.querySelector("button");
+const overlay = document.getElementById("overlay");
 
 function getData() {
-    const arrayName = [];
-    let template = ``;
-    for (let i = 0; i < 6; i++) {
-        axios.get(baseUrl + resource, { params }).then((res) => {
-            console.log(res.data);
-            const image = res.data[i].url;
-            console.log(image);
-            const text = res.data[i].title;
-            console.log(text);
-            template += `
-            <div class="col d-flex flex-column">
-                <img id="pin" src="./img/pin.svg" alt="Pallino">
-                <div class="img">
-                    <img src="${image}" alt="Foto">
-                </div>
-                <div class="text">
-                    <p>${text}</p>
-                </div>
-                </div>
+    // const arrayName = [];
+    axios.get(endpoint, { params }).then((res) => {    //! chiamata axios
+        const photos = res.data;
+        console.log(photos);
+        const template = photos.map((photo) => {
+            const {id, title, url} = photo          //! Destrutturazione
+            return `
+            <div id="${id}"  class="col d-flex flex-column">
+              <img id="pin" src="./img/pin.svg" alt="Pallino">
+              <div class="img">
+                  <img src="${url}" alt="${title}">
+              </div>
+              <div class="text">
+                <p>${title}</p>
+            </div>
+          </div>
             `;
-            arrayName.push(res.data);
-            if (arrayName.length === 6) {
-                card.innerHTML = template;
-            };
+        }) .join("");
+        card.innerHTML = template;
+        // getFigures();
+    })
+        .catch((error) => {
+            console.log(error);
         })
-            .catch((error) => {
-                console.log(error);
-            })
+        .finally(() => {
+            console.log("in tutti i casi eseguita");
+        });
 
-            .finally(() => {
-                console.log("in tutti i casi eseguita");
-            });
-    };
+        //todo Soluzione con un ciclo for 
+
+    // for (let i = 0; i < 6; i++) {
+    //     axios.get(baseUrl + resource, { params }).then((res) => {
+    //         console.log(res.data);
+    //         const image = res.data[i].url;
+    //         console.log(image);
+    //         const text = res.data[i].title;
+    //         console.log(text);
+    //         template += `
+    //         <div id="imagecard"  class="col d-flex flex-column">
+    //             <img id="pin" src="./img/pin.svg" alt="Pallino">
+    //             <div class="img">
+    //                 <img src="${image}" alt="Foto">
+    //             </div>
+    //             <div class="text">
+    //                 <p>${text}</p>
+    //             </div>
+    //             </div>
+    //         `;
+    //         arrayName.push(res.data);
+    //         getFigures();
+    //         if (arrayName.length === 6) {
+    //             card.innerHTML = template;
+    //         };
+    //     })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+
+    //         .finally(() => {
+    //             console.log("in tutti i casi eseguita");
+    //         });
+    // };
 }
+
+// function getFigures() {
+//     const figures = document.getElementById("imagecard");
+//     console.log(figures);
+// }
 getData();
