@@ -21,7 +21,7 @@ const resource = "/photos";
 const endpoint = baseUrl + resource;
 // //! Params
 let randomNumber = Math.floor(Math.random() * 5000);
-const params =  `?_start=${randomNumber}&_limit=6`;
+const params = `?_start=${randomNumber}&_limit=6`;
 
 //!  costanti
 const card = document.getElementById("card");
@@ -30,6 +30,9 @@ const button2 = document.getElementById("add");
 const button3 = document.getElementById("delete");
 const overlay = document.getElementById("overlay");
 const imgOverlay = document.getElementById("imgOver");
+let selPhoto;
+
+//! Stampare le card
 
 function getData() {
     axios.get(endpoint + params).then((res) => {    //! chiamata axios
@@ -38,7 +41,7 @@ function getData() {
         const template = photos.map((photo) => {
             const { id, title, url } = photo          //! Destrutturazione
             return `
-            <figure id="${id}"  class="col d-flex flex-column">
+            <figure id="${id}" class="col d-flex flex-column">
               <img id="pin" src="./img/pin.svg" alt="Pallino">
               <div class="img">
                   <img src="${url}" alt="${title}">
@@ -100,25 +103,38 @@ function getData() {
 
 function getFigures(p) {
     const figures = document.querySelectorAll("figure");
+    console.log(figures);
     figures.forEach((figure) => {
-        figure.addEventListener("click", function() {
+        figure.addEventListener("click", function () {
             console.log(figure.id);
             overlay.classList.remove("d-none");
-            const photo = p.find((el)=> el.id === parseInt(figure.id));
-            console.log(photo);
-            imgOverlay.src = photo.url;
-            imgOverlay.alt = photo.title;
+            selPhoto = p.find((el) => el.id === parseInt(figure.id));
+            console.log(selPhoto);
+            imgOverlay.src = selPhoto.url;
+            imgOverlay.alt = selPhoto.title;
         });
-        button1.addEventListener("click", function() {
-            overlay.classList.add("d-none");
+    });
+    button1.addEventListener("click", function () {
+        overlay.classList.add("d-none");
+    });
+    button2.addEventListener("click", function () {
+        overlay.classList.add("d-none");
+    });
+    button3.addEventListener("click", function () {
+        console.log("Ciao");
+        overlay.classList.add("d-none");
+        console.log(selPhoto);
+        figures.forEach((el) => {
+            console.log(el);
+            if (el.id == selPhoto.id) {
+                // photos.splice(el.id, 1);
+                el.remove();
+            }
         });
-        button2.addEventListener("click", function() {
-            overlay.classList.add("d-none");
-            
-        });
-        button3.addEventListener("click", function() {
-            overlay.classList.add("d-none");
-        });
+        console.log(figures);
+        // if (index !== -1) {
+        //     photos.splice(index, 1);
+        // }
     });
 }
 
