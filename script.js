@@ -21,7 +21,7 @@ const resource = "/photos";
 const endpoint = baseUrl + resource;
 // //! Params
 let randomNumber = Math.floor(Math.random() * 5000);
-const params = `?_start=${randomNumber}&_limit=6`;
+const params = `?_start=${randomNumber}&_limit=`;
 
 //!  costanti
 const card = document.getElementById("card");
@@ -34,8 +34,9 @@ let selPhoto;
 
 //! Stampare le card
 
-function getData() {
-    axios.get(endpoint + params).then((res) => {    //! chiamata axios
+function getData(limit = 6) {
+    // limite di 6
+    axios.get(endpoint + params + limit).then((res) => {    //! chiamata axios
         const photos = res.data;
         console.log(photos);
         const template = photos.map((photo) => {
@@ -52,7 +53,7 @@ function getData() {
           </figure>
             `;
         }).join("");
-        card.innerHTML = template;
+        card.innerHTML += template;
         getFigures(photos);
     })
         .catch((error) => {
@@ -99,10 +100,10 @@ function getData() {
     //         });
     // };
 }
-//! Overlay foto 
 
+//! Overlay foto 
 function getFigures(p) {
-    const figures = document.querySelectorAll("figure");
+    let figures = document.querySelectorAll("figure");
     console.log(figures);
     figures.forEach((figure) => {
         figure.addEventListener("click", function () {
@@ -117,25 +118,24 @@ function getFigures(p) {
     button1.addEventListener("click", function () {
         overlay.classList.add("d-none");
     });
-    button2.addEventListener("click", function () {
-        overlay.classList.add("d-none");
-    });
     button3.addEventListener("click", function () {
-        console.log("Ciao");
+        // console.log("Ciao");
         overlay.classList.add("d-none");
         console.log(selPhoto);
         figures.forEach((el) => {
             console.log(el);
             if (el.id == selPhoto.id) {
-                // photos.splice(el.id, 1);
                 el.remove();
             }
         });
+
+        figures = document.querySelectorAll("figure");
         console.log(figures);
-        // if (index !== -1) {
-        //     photos.splice(index, 1);
-        // }
     });
 }
+
+// button2.addEventListener("click", function () {
+
+// });
 
 getData();
