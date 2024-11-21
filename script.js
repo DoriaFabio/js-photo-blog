@@ -21,22 +21,23 @@ const resource = "/photos";
 const endpoint = baseUrl + resource;
 // //! Params
 let randomNumber = Math.floor(Math.random() * 5000);
-const params = `?_start=${randomNumber}&_limit=`;
+let randomNumberDue = Math.floor(Math.random() * 5000);
+const paramsOne = `?_start=${randomNumberDue}&_limit=1`;
 
 //!  costanti
 const card = document.getElementById("card");
-const button1 = document.getElementById("close");
-const button2 = document.getElementById("add");
-const button3 = document.getElementById("delete");
+const closeButton = document.getElementById("close");
+const addButton = document.getElementById("add");
+const deleteButton = document.getElementById("delete");
 const overlay = document.getElementById("overlay");
 const imgOverlay = document.getElementById("imgOver");
 let selPhoto;
 
 //! Stampare le card
 
-function getData(limit = 6) {
+function getData(param = `?_start=${randomNumber}&_limit=6`) {
     // limite di 6
-    axios.get(endpoint + params + limit).then((res) => {    //! chiamata axios
+    axios.get(endpoint + param).then((res) => {    //! chiamata axios
         const photos = res.data;
         console.log(photos);
         const template = photos.map((photo) => {
@@ -115,10 +116,10 @@ function getFigures(p) {
             imgOverlay.alt = selPhoto.title;
         });
     });
-    button1.addEventListener("click", function () {
+    closeButton.addEventListener("click", function () {
         overlay.classList.add("d-none");
     });
-    button3.addEventListener("click", function () {
+    deleteButton.addEventListener("click", function () {
         // console.log("Ciao");
         overlay.classList.add("d-none");
         console.log(selPhoto);
@@ -134,8 +135,10 @@ function getFigures(p) {
     });
 }
 
-// button2.addEventListener("click", function () {
+//! Bottone aggiungi card
 
-// });
+addButton.addEventListener("click", function () {
+    getData(paramsOne);
+});
 
 getData();
