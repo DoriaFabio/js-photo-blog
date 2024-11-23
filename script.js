@@ -27,7 +27,7 @@ const paramsOne = `?_start=${randomNumberDue}&_limit=1`;
 //!  costanti
 const card = document.getElementById("card");
 const closeButton = document.getElementById("close");
-const addButton = document.getElementById("add");
+// const addButton = document.getElementById("add");
 const deleteButton = document.getElementById("delete");
 const overlay = document.getElementById("overlay");
 const imgOverlay = document.getElementById("imgOver");
@@ -137,8 +137,8 @@ function getFigures(p) {
 
 //! Bottone aggiungi card
 
-addButton.addEventListener("click", function () {
-    getData(paramsOne);
-});
+// addButton.addEventListener("click", function () {
+//     getData(paramsOne);
+// });
 
 getData();

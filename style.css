@@ -157,13 +157,13 @@ a:hover {
     background-color: #e11717;
 }
 
-#add {
+/* #add {
     position: absolute;
     top: 30px;
     left: -80px;
     padding: 5px 10px;
     font-size: 17px;
-}
+} */
 
 
 @media  screen and (max-width: 768px) {
@@ -190,13 +190,13 @@ a:hover {
         width: 300px;
         height: 300px;
     }
-    #add {
+    /* #add {
         position: absolute;
         top: 30px;
         left: -5px;
         padding: 5px 10px;
         font-size: 14px;
-    }
+    } */
 }
 
 @media  screen and (max-width: 426px) {
@@ -221,13 +221,13 @@ a:hover {
         width: 200px;
         height: 200px;
     }
-    #add {
+    /* #add {
         position: absolute;
         top: 30px;
         left: -5px;
         padding: 5px 10px;
         font-size: 11px;
-    }
+    } */
     .container {
         padding: 20px 50px;;
     }
